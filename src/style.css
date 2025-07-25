@@ -1,0 +1,187 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  min-height: 100vh;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+@font-face {
+  font-style: normal;
+  font-weight: 400;
+  font-family: "Inter";
+  font-display: swap;
+  src: url("/fonts/Inter-Regular.woff2") format("woff2"),
+}
+
+@font-face {
+  font-style: normal;
+  font-weight: 500;
+  font-family: "Inter";
+  font-display: swap;
+  src: url("/fonts/Inter-Medium.woff2") format("woff2"),
+}
+
+@font-face {
+  font-style: normal;
+  font-weight: 600;
+  font-family: "Inter";
+  font-display: swap;
+  src: url("/fonts/Inter-SemiBold.woff2") format("woff2"),
+}
+
+@font-face {
+  font-style: normal;
+  font-weight: 700;
+  font-family: "Inter";
+  font-display: swap;
+  src: url("/fonts/Inter-Bold.woff2") format("woff2"),
+}
+
+@font-face {
+  font-style: italic;
+  font-weight: 400;
+  font-family: "Inter";
+  font-display: swap;
+  src: url("/fonts/Inter-Italic.woff2") format("woff2"),
+}
+
+@font-face {
+  font-style: italic;
+  font-weight: 500;
+  font-family: "Inter";
+  font-display: swap;
+  src: url("/fonts/Inter-MediumItalic.woff2") format("woff2"),
+}
+
+@font-face {
+  font-style: italic;
+  font-weight: 600;
+  font-family: "Inter";
+  font-display: swap;
+  src: url("/fonts/Inter-SemiBoldItalic.woff2") format("woff2"),
+}
+
+@font-face {
+  font-style: italic;
+  font-weight: 700;
+  font-family: "Inter";
+  font-display: swap;
+  src: url("/fonts/Inter-BoldItalic.woff2") format("woff2"),
+}
+
+html {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 130%;
+  font-family: "Inter", "Arial", sans-serif;
+  color: #355B3E;
+  background-color: #D8D8D8;
+}
+
+
+.wrapper {
+  width: 100%;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper main {
+  flex: 1;
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  padding: 0 24px;
+  margin: 0 auto;
+}
+
+@media(max-width: 767px) {
+  .container {
+    padding: 0 15px;
+  }
+}
+
+
+.bg-green {
+  background-color: #355B3E;
+}
+
+.header {
+  color: #fff;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media(max-width: 1023px) {
+  .grid-4 {
+    grid-template-columns:  repeat(2, 1fr);
+  }
+}
+
+@media(max-width: 767px) {
+  .grid-4 {
+    grid-template-columns:  1fr;
+  }
+}
+
+.swiper .swiper-button-next,
+.swiper .swiper-button-prev {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.7);
+  transition: background 0.3s ease;
+}
+
+.swiper .swiper-button-next:hover,
+.swiper .swiper-button-prev:hover {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+}
+
+.swiper .swiper-button-next::after,
+.swiper .swiper-button-prev::after {
+  font-size: 24px;
+  color: #029664;
+}
