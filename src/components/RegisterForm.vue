@@ -21,7 +21,7 @@
           v-model="confirmPassword"
       />
       <div class="entry__actions">
-          <a href="/login" class="btn btn--bordered">Back to Login</a>
+          <router-link to="/login" class="btn btn--bordered">Back to Login</router-link>
           <Button type="submit" text="Sign up" />
       </div>
     </form>

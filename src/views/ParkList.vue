@@ -69,6 +69,15 @@ onMounted(fetchParks)
   .list {
     margin: 50px 0;
   }
+  @media(max-width: 767px) {
+    .title {
+      font-size: 26px;
+      margin: 20px 0;
+    }
+    .subtitle {
+      font-size: 16px;
+    }
+  }
 
 
 </style>

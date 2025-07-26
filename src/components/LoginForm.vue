@@ -21,7 +21,7 @@
             />
             <a href="#" class="entry__forgot">Forgot password?</a>
             <Button type="submit" text="Login" />
-            <a href="/register" class="btn btn--bordered">Sign up</a>
+            <router-link to="/register" class="btn btn--bordered">Sign up</router-link>
         </div>
         </form>
         <div class="entry__links">

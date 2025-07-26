@@ -11,14 +11,16 @@
             />
         </label>
         <button v-if="type === 'password'" class="custom-input__btn" type="button" @click="toggleType">
-            <inline-svg src="/assets/svg/eye-close.svg" />
-            <inline-svg src="/assets/svg/eye-open.svg" />
+            <inline-svg :src="eyeCloseIcon" />
+            <inline-svg :src="eyeOpenIcon" />
         </button>
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+const eyeCloseIcon = new URL('../../assets/svg/eye-close.svg', import.meta.url).href
+const eyeOpenIcon = new URL('../../assets/svg/eye-open.svg', import.meta.url).href
 
 const props = defineProps({
     label: { type: String, default: '' },
