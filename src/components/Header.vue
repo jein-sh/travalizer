@@ -24,7 +24,7 @@
     }
 </script>
 
-<style scred>
+<style scoped>
     .header {
         background-color: #355B3E;
         color: #fff;

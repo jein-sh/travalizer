@@ -56,7 +56,7 @@
   }
 </script>
 
-<style scored>
+<style scoped>
 
 .entry__subtitle {
   font-size: 16px;

@@ -39,7 +39,7 @@ const toggleType = () => {
 }
 </script>
 
-<style scored>
+<style scoped>
 .custom-input {
   position: relative;
   margin-bottom: 24px;

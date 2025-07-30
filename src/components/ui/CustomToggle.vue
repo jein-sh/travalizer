@@ -31,7 +31,7 @@ const updateValue = (e) => {
 }
 </script>
 
-<style scored>
+<style scoped>
 
 .custom-toggle label {
   display: flex;

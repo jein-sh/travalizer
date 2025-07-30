@@ -17,7 +17,7 @@
   })
 </script>
 
-<style scored>
+<style scoped>
   .card {
     display: flex;
     flex-direction: column;

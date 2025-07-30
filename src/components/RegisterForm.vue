@@ -56,7 +56,7 @@
   }
 </script>
 
-<style scored>
+<style scoped>
 
 .entry__form form {
   width: 100%;

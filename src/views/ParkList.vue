@@ -56,7 +56,7 @@
 
 </script>
 
-<style scored>
+<style scoped>
   .title {
     color: #047857; 
     text-shadow: 2px 2px 4px #fff;
