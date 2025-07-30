@@ -55,11 +55,11 @@
               </dd>
             </dl>
           </div>
-          <div class="park__info">
+          <div v-if="park.directionsInfo" class="park__info">
             <h2 class="park__title">How to get there</h2>
             <div class="park__text">{{ park.directionsInfo }}</div>
           </div>
-          <div class="park__info">
+          <div v-if="park.weatherInfo" class="park__info">
             <h2 class="park__title">Weather</h2>
             <div class="park__text">{{ park.weatherInfo }}</div>
           </div>
@@ -95,15 +95,13 @@
   const park = ref(null)
   const loading = ref(true)
 
-  const nspKey = import.meta.env.VITE_NPS_API_KEY
-
   const fetchPark = async () => {
     try {
-      const res = await fetch(`https://developer.nps.gov/api/v1/parks?parkCode=${route.params.code}&api_key=${nspKey}`)
+      const res = await fetch(`https://parks-cabb0-default-rtdb.europe-west1.firebasedatabase.app/parks/${route.params.code}.json`)
       const data = await res.json()
-      park.value = data.data[0]
+      park.value = data
 
-      await nextTick() 
+      await nextTick()
       const lat = parseFloat(park.value.latitude)
       const lng = parseFloat(park.value.longitude)
 

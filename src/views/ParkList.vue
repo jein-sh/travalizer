@@ -31,18 +31,16 @@
   const router = useRouter()
   const loading = ref(true)
 
+
   const fetchParks = async () => {
     try {
-      const total = 500
-      const pageSize = 12
-      const randomStart = Math.floor(Math.random() * (total - pageSize))
+      const res = await fetch('https://parks-cabb0-default-rtdb.europe-west1.firebasedatabase.app/parks.json');
+      const data = await res.json();
 
-      const res = await fetch(
-        `https://developer.nps.gov/api/v1/parks?limit=100&start=${randomStart}&api_key=${nspKey}`
-      )
-      const data = await res.json()
-      const shuffled = data.data.sort(() => 0.5 - Math.random())
-      parks.value = shuffled.slice(0, 12)
+      const allParks = Object.values(data);
+      const shuffled = allParks.sort(() => 0.5 - Math.random());
+      parks.value = shuffled.slice(0, 12);
+
     } catch (error) {
       console.error('Error fetching parks:', error)
     } finally {
