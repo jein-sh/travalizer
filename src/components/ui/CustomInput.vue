@@ -19,8 +19,8 @@
 
 <script setup>
 import { ref } from 'vue'
-const eyeCloseIcon = new URL('../../assets/svg/eye-close.svg', import.meta.url).href
-const eyeOpenIcon = new URL('../../assets/svg/eye-open.svg', import.meta.url).href
+const eyeCloseIcon = new URL('@/assets/svg/eye-close.svg', import.meta.url).href
+const eyeOpenIcon = new URL('@/assets/svg/eye-open.svg', import.meta.url).href
 
 const props = defineProps({
     label: { type: String, default: '' },

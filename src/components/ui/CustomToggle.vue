@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
- const checkIcon = new URL('../../assets/svg/icon-check.svg', import.meta.url).href
+ const checkIcon = new URL('@/assets/svg/icon-check.svg', import.meta.url).href
 
 const props = defineProps({
   modelValue: Boolean,

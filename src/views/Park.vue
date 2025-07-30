@@ -3,7 +3,7 @@
       <div v-if="loading">
         <Preloader />
     </div>
-    <main class="park" v-else v-if="park">
+    <main class="park" v-if="park" >
       <div class="park__hero">
         <Swiper
           :modules="modules"
@@ -153,6 +153,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    user-select: none;
   }
   .park__name {
     width: 100%;

@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-    const logoImg = new URL('../../assets/svg/logo.svg', import.meta.url).href
+    const logoImg = new URL('@/assets/svg/logo.svg', import.meta.url).href
 </script>
 
 <style scoped>
