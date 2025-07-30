@@ -4,7 +4,10 @@
         <div class="container">
           <h1 class="title">Your AI travel assistant has handpicked the top parks to recharge and explore.</h1>
           <div class="subtitle">It’s time to travel smarter — start with these destinations.</div>
-          <div class="grid-4 list">
+          <div v-if="loading">
+              <Preloader />
+          </div>
+          <div v-else class="grid-4 list">
             <Card
               v-for="park in parks"
               :key="park.id"
@@ -20,31 +23,38 @@
   import Header from '../components/Header.vue'
   import { ref, onMounted } from 'vue'
   import Card from '../components/Card.vue'
+  import Preloader from '../components/ui/Preloader.vue'
   import { useRouter } from 'vue-router'
   const nspKey = import.meta.env.VITE_NPS_API_KEY
 
   const parks = ref([])
   const router = useRouter()
+  const loading = ref(true)
 
   const fetchParks = async () => {
-  const total = 500; 
-  const pageSize = 12;
-  const randomStart = Math.floor(Math.random() * (total - pageSize));
+    try {
+      const total = 500
+      const pageSize = 12
+      const randomStart = Math.floor(Math.random() * (total - pageSize))
 
-  const res = await fetch(
-    `https://developer.nps.gov/api/v1/parks?limit=100&start=${randomStart}&api_key=${nspKey}`
-  )
-  const data = await res.json()
-  const shuffled = data.data.sort(() => 0.5 - Math.random());
+      const res = await fetch(
+        `https://developer.nps.gov/api/v1/parks?limit=100&start=${randomStart}&api_key=${nspKey}`
+      )
+      const data = await res.json()
+      const shuffled = data.data.sort(() => 0.5 - Math.random())
+      parks.value = shuffled.slice(0, 12)
+    } catch (error) {
+      console.error('Error fetching parks:', error)
+    } finally {
+      loading.value = false
+    }
+  }
 
-  parks.value = shuffled.slice(0, 12)
-}
+  const goToDetail = (park) => {
+    router.push(`/parks/${park.parkCode}`)
+  }
 
-const goToDetail = (park) => {
-  router.push(`/parks/${park.parkCode}`)
-}
-
-onMounted(fetchParks)
+  onMounted(fetchParks)
 
 </script>
 

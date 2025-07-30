@@ -1,6 +1,9 @@
 <template>
     <Header />
-    <main class="park" v-if="park">
+      <div v-if="loading">
+        <Preloader />
+    </div>
+    <main class="park" v-else v-if="park">
       <div class="park__hero">
         <Swiper
           :modules="modules"
@@ -77,30 +80,38 @@
   import 'swiper/css/navigation'
   import 'swiper/css/autoplay'
   import { Navigation, Autoplay } from 'swiper/modules'
+  import Preloader from '../components/ui/Preloader.vue'
 
 
   const route = useRoute()
   const router = useRouter()
   const park = ref(null)
+  const loading = ref(true)
 
   const nspKey = import.meta.env.VITE_NPS_API_KEY
 
   const fetchPark = async () => {
-    const res = await fetch(`https://developer.nps.gov/api/v1/parks?parkCode=${route.params.code}&api_key=${nspKey}`)
-    const data = await res.json()
-    park.value = data.data[0]
+    try {
+      const res = await fetch(`https://developer.nps.gov/api/v1/parks?parkCode=${route.params.code}&api_key=${nspKey}`)
+      const data = await res.json()
+      park.value = data.data[0]
 
-    await nextTick() 
-    const lat = parseFloat(park.value.latitude)
-    const lng = parseFloat(park.value.longitude)
+      await nextTick() 
+      const lat = parseFloat(park.value.latitude)
+      const lng = parseFloat(park.value.longitude)
 
-    const map = L.map('map').setView([lat, lng], 10)
+      const map = L.map('map').setView([lat, lng], 10)
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors'
-    }).addTo(map)
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+      }).addTo(map)
 
-    L.marker([lat, lng]).addTo(map)
+      L.marker([lat, lng]).addTo(map)
+    } catch (error) {
+      console.error('Error fetching park:', error)
+    } finally {
+      loading.value = false
+    }
   }
 
   const goBack = () => {
@@ -117,7 +128,7 @@
     } else if (digits.length === 10) {
       return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`
     }
-
+ 
     return raw 
   }
 
