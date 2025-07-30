@@ -81,7 +81,14 @@
   import 'swiper/css/autoplay'
   import { Navigation, Autoplay } from 'swiper/modules'
   import Preloader from '../components/ui/Preloader.vue'
+  import markerIconUrl from '@/assets/svg/marker.svg'
 
+  const customIcon = L.icon({
+    iconUrl: markerIconUrl,
+    iconSize: [38, 54],        
+    iconAnchor: [16, 54],     
+    popupAnchor: [0, -54]   
+  })
 
   const route = useRoute()
   const router = useRouter()
@@ -106,7 +113,7 @@
         attribution: '© OpenStreetMap contributors'
       }).addTo(map)
 
-      L.marker([lat, lng]).addTo(map)
+      L.marker([lat, lng], { icon: customIcon }).addTo(map)
     } catch (error) {
       console.error('Error fetching park:', error)
     } finally {
