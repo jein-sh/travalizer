@@ -29,7 +29,7 @@
   </button>
 </template>
 
-<style scoped>
+<style>
  .btn {
   display: flex;
   justify-content: center;
