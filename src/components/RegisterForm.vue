@@ -22,7 +22,7 @@
       />
       <div class="entry__actions">
           <router-link to="/login" class="btn btn--bordered">Back to Login</router-link>
-          <Button type="submit" text="Sign up" />
+          <Button type="submit" text="Sign up" :loading="loading"/>
       </div>
     </form>
   </div>
@@ -36,6 +36,7 @@
   import CustomInput from './ui/CustomInput.vue'
   import Button from './ui/Button.vue'
 
+  const loading = ref(false)
   const email = ref('')
   const password = ref('')
   const confirmPassword = ref('')
@@ -47,11 +48,15 @@
       return
     }
 
+    loading.value = true
+
     try {
       await createUserWithEmailAndPassword(auth, email.value, password.value)
       router.push('/parks')
     } catch (error) {
       alert(error.message)
+    } finally {
+      loading.value = false
     }
   }
 </script>

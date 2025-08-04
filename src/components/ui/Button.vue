@@ -16,16 +16,21 @@
             type: String,
             required: true,
         },
+        loading: {
+          type: Boolean,
+          default: false,
+        },
     })
 </script>
 
 <template>
   <button
     :type="type"
-    :disabled="disabled"
-    :class="['btn', mod ? `btn--${mod}` : '']"
+    :disabled="disabled || loading"
+    :class="['btn', mod ? `btn--${mod}` : '', { 'btn--disabled': disabled || loading }]"
   >
-    {{ text }}
+    <span v-if="loading" class="loader"></span>
+    <span v-else>{{ text }}</span>
   </button>
 </template>
 
@@ -64,5 +69,25 @@
 .btn--bordered:hover {
   color:  #fff;
   background-color: #029664;
+}
+
+.btn--disabled {
+  pointer-events: none;
+}
+
+.loader {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>

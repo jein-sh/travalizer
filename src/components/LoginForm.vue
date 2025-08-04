@@ -21,7 +21,7 @@
             />
             <a href="#" class="entry__forgot">Forgot password?</a>
             <Button type="submit" text="Login" />
-            <router-link to="/register" class="btn btn--bordered">Sign up</router-link>
+            <router-link to="/register" class="btn btn--bordered" :loading="loading">Sign up</router-link>
         </div>
         </form>
         <div class="entry__links">
@@ -45,13 +45,18 @@
   const email = ref('')
   const password = ref('')
   const router = useRouter()
+  const loading = ref(false)
+
 
   const login = async () => {
+    loading.value = true
     try {
       await signInWithEmailAndPassword(auth, email.value, password.value)
       router.push('/parks')
     } catch (error) {
       alert(error.message)
+    } finally {
+      loading.value = false
     }
   }
 </script>
