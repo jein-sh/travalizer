@@ -69,4 +69,16 @@
   margin-bottom: 32px;
 }
 
+.entry__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media(max-width: 359px) {
+  .entry__actions {
+    grid-template-columns: 1fr;
+  }
+}
+
 </style>
